@@ -13,7 +13,7 @@
 //one more Thing create a 'reset' and a 'new game' buttons as childs of the element with the id 'buttons'. the reset button has to start the game again and the new game create a new game with new players and a new random board.
 
 board_size  = 4
-ship_amount = 10
+ship_amount = 4
 //this is a function to create empty game board
 function create_board_rows(size){
   var game_board_list= [];
@@ -35,7 +35,6 @@ function get_total_ship_amount(board,size){
       for (var j = 0; j < board[i].length; j++){
       total_ships += board[i][j]
       }
-      
   }
   return total_ships
 }
@@ -43,17 +42,15 @@ function get_total_ship_amount(board,size){
 // Generate  Ships with random values and add into a gameboard
 function fill_board_with_ships(game_board, board_demension, ship_amount){
   dummy_list = game_board
-do
-{
-  dummy_list[Math.floor(Math.random() * board_demension)][Math.floor(Math.random() * board_demension)] = 1
-  
-}while( get_total_ship_amount(dummy_list, board_size) < ship_amount);
-return dummy_list
+  do{
+    dummy_list[Math.floor(Math.random() * board_demension)][Math.floor(Math.random() * board_demension)] = 1
+  }while( get_total_ship_amount(dummy_list, board_size) < ship_amount);
+  return dummy_list
 }
 
 //function to make players shoot
 function shoot(board,x,y){
-  if (board[x][y] == 1){
+  if (board[x][y] === 1){
     alert("You hit the ship' Good Job!")
     board[x][y] = 0
   }else{
@@ -115,7 +112,7 @@ for (var x = 0; x < 4; x++) {
 
       //this function adds the click event to each cell
       cell.addEventListener( 'click', (e) => {
-        if (turn == player_2_name){
+        if (turn === player_2_name){
           let cell = e.target; // get the element clicked
           console.log( cell.textContent) //display the coordinates in the console
           cell.style.visibility = 'hidden';// this  means that the contents of the element will be invisible, but the element stays in its original position and size / try it clicking on any of the black cells (in your browser) and see whats happens
@@ -130,7 +127,7 @@ for (var x = 0; x < 4; x++) {
           console.log(player_1_board);
           console.log(inital_board_1)
 
-          if (get_total_ship_amount(player_1_board,board_size) == 0){
+          if (get_total_ship_amount(player_1_board,board_size) === 0){
             alert(player_2_name + " winn the game")
             turn_player.innerHTML = "Congragulations "+ player_2_name+ " won the game"
             turn = "game_finished"
@@ -159,7 +156,7 @@ for (var x = 0; x < 4; x++) {
 
       //this function adds the click event to each cell
       cell.addEventListener( 'click', (e) => {
-        if (turn == player_1_name){
+        if (turn === player_1_name){
           let cell = e.target; // get the element clicked
           console.log( cell.textContent) //display the coordinates in the console
           cell.style.visibility = 'hidden';// this  means that the contents of the element will be invisible, but the element stays in its original position and size / try it clicking on any of the black cells (in your browser) and see whats happens
@@ -170,7 +167,7 @@ for (var x = 0; x < 4; x++) {
           p_2_lives_element.innerHTML = get_total_ship_amount(player_2_board,board_size)
           turn = player_2_name;
           turn_player.innerHTML = player_2_name+"'s turn to play"
-          if (get_total_ship_amount(player_2_board,board_size) == 0){
+          if (get_total_ship_amount(player_2_board,board_size) === 0){
             alert(player_1_name + " winn the game")
             turn_player.innerHTML = "Congragulations "+ player_1_name+ " won the game"
             turn = "game_finished"
