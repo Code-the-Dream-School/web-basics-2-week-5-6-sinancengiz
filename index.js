@@ -29,9 +29,9 @@ function create_board_rows(size){
 //a function to get total ship amount on game_board
 function get_total_ship_amount(board,size){
   total_ships = 0
-  for (var i = 0; i < size; i++){
+  for (var i = 0; i < board.length ; i++){
     
-      for (var j = 0; j < size; j++){
+      for (var j = 0; j < board[i].length; j++){
       total_ships += board[i][j]
       }
       
