@@ -12,7 +12,7 @@
 //As our previous Battleship, the winner is the player that hits the 4 opponent's ships first
 //one more Thing create a 'reset' and a 'new game' buttons as childs of the element with the id 'buttons'. the reset button has to start the game again and the new game create a new game with new players and a new random board.
 
-the_number  = 4
+board_size  = 4
 //this is a function to create empty game board
 function create_game_board(number){
   var game_board_list= [];
@@ -46,7 +46,7 @@ do
 {
   dummy_list[Math.floor(Math.random() * number)][Math.floor(Math.random() * number)] = 1
   
-}while( get_total_ship_amount(dummy_list,the_number) < number);
+}while( get_total_ship_amount(dummy_list,board_size) < number);
 return dummy_list
 }
 
@@ -65,11 +65,11 @@ function shoot(board,x,y){
 function game_function_1(){
 
 //create players emty borads
-emty_player_1_board = create_game_board(the_number)
-emty_player_2_board = create_game_board(the_number)
+emty_player_1_board = create_game_board(board_size)
+emty_player_2_board = create_game_board(board_size)
 //fill boards with ships
-player_1_board = fill_board_with_ships(emty_player_1_board, the_number)
-player_2_board = fill_board_with_ships(emty_player_2_board, the_number)
+player_1_board = fill_board_with_ships(emty_player_1_board, board_size)
+player_2_board = fill_board_with_ships(emty_player_2_board, board_size)
 
 //get names from user
 player_1_name = prompt("Player 1 Enter Your Name:" )
@@ -89,9 +89,9 @@ function game_function_2(){
 
 //set lives in html element
 p_1_lives_element = document.getElementById("ships_player1");
-p_1_lives_element.innerHTML = get_total_ship_amount(player_1_board,the_number)
+p_1_lives_element.innerHTML = get_total_ship_amount(player_1_board,board_size)
 p_2_lives_element = document.getElementById("ships_player2");
-p_2_lives_element.innerHTML = get_total_ship_amount(player_2_board,the_number)
+p_2_lives_element.innerHTML = get_total_ship_amount(player_2_board,board_size)
 
 //set turn player
 turn_element = document.getElementById("turn_player");
@@ -117,19 +117,19 @@ for (var x = 0; x < 4; x++) {
         if (turn == player_2_name){
           let cell = e.target; // get the element clicked
           console.log( cell.textContent) //display the coordinates in the console
-          //cell.style.visibility = 'hidden';// this  means that the contents of the element will be invisible, but the element stays in its original position and size / try it clicking on any of the black cells (in your browser) and see whats happens
-          cell.style.background ="purple"; //with this propertie you can change the background color of the clicked cell. try comment the line bellow and uncomment this line. Do not forget to save this file and refresh the borwser to see the changes
+          cell.style.visibility = 'hidden';// this  means that the contents of the element will be invisible, but the element stays in its original position and size / try it clicking on any of the black cells (in your browser) and see whats happens
+          //cell.style.background ="purple"; //with this propertie you can change the background color of the clicked cell. try comment the line bellow and uncomment this line. Do not forget to save this file and refresh the borwser to see the changes
           var x = parseInt(cell.textContent.charAt(0))
           var y = parseInt(cell.textContent.charAt(2))
           player_1_board = shoot(player_1_board,x,y)
           turn = player_1_name;
           turn_player.innerHTML = player_1_name+"'s turn to play"
-          p_1_lives_element.innerHTML = get_total_ship_amount(player_1_board,the_number)
+          p_1_lives_element.innerHTML = get_total_ship_amount(player_1_board,board_size)
 
           console.log(player_1_board);
           console.log(inital_board_1)
 
-          if (get_total_ship_amount(player_1_board,the_number) == 0){
+          if (get_total_ship_amount(player_1_board,board_size) == 0){
             alert(player_2_name + " winn the game")
             turn_player.innerHTML = "Congragulations "+ player_2_name+ " won the game"
             turn = "game_finished"
@@ -161,15 +161,15 @@ for (var x = 0; x < 4; x++) {
         if (turn == player_1_name){
           let cell = e.target; // get the element clicked
           console.log( cell.textContent) //display the coordinates in the console
-          //cell.style.visibility = 'hidden';// this  means that the contents of the element will be invisible, but the element stays in its original position and size / try it clicking on any of the black cells (in your browser) and see whats happens
-          cell.style.background ="purple"; //with this propertie you can change the background color of the clicked cell. try comment the line bellow and uncomment this line. Do not forget to save this file and refresh the borwser to see the changes
+          cell.style.visibility = 'hidden';// this  means that the contents of the element will be invisible, but the element stays in its original position and size / try it clicking on any of the black cells (in your browser) and see whats happens
+          //cell.style.background ="purple"; //with this propertie you can change the background color of the clicked cell. try comment the line bellow and uncomment this line. Do not forget to save this file and refresh the borwser to see the changes
           var x = parseInt(cell.textContent.charAt(0))
           var y = parseInt(cell.textContent.charAt(2))
           player_2_board = shoot(player_2_board,x,y)
-          p_2_lives_element.innerHTML = get_total_ship_amount(player_2_board,the_number)
+          p_2_lives_element.innerHTML = get_total_ship_amount(player_2_board,board_size)
           turn = player_2_name;
           turn_player.innerHTML = player_2_name+"'s turn to play"
-          if (get_total_ship_amount(player_2_board,the_number) == 0){
+          if (get_total_ship_amount(player_2_board,board_size) == 0){
             alert(player_1_name + " winn the game")
             turn_player.innerHTML = "Congragulations "+ player_1_name+ " won the game"
             turn = "game_finished"
