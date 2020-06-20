@@ -13,6 +13,7 @@
 //one more Thing create a 'reset' and a 'new game' buttons as childs of the element with the id 'buttons'. the reset button has to start the game again and the new game create a new game with new players and a new random board.
 
 board_size  = 4
+ship_amount = 4
 //this is a function to create empty game board
 function create_board_rows(size){
   var game_board_list= [];
@@ -68,8 +69,8 @@ function game_function_1(){
 emty_player_1_board = create_board_rows(board_size)
 emty_player_2_board = create_board_rows(board_size)
 //fill boards with ships
-player_1_board = fill_board_with_ships(emty_player_1_board, board_size)
-player_2_board = fill_board_with_ships(emty_player_2_board, board_size)
+player_1_board = fill_board_with_ships(emty_player_1_board, ship_amount)
+player_2_board = fill_board_with_ships(emty_player_2_board, ship_amount)
 
 //get names from user
 player_1_name = prompt("Player 1 Enter Your Name:" )
