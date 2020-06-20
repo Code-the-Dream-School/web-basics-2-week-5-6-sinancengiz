@@ -14,7 +14,7 @@
 
 board_size  = 4
 //this is a function to create empty game board
-function create_game_board(number){
+function create_board_rows(number){
   var game_board_list= [];
   for (var i = 0; i < number; i++){
     dummy_list = []
@@ -65,8 +65,8 @@ function shoot(board,x,y){
 function game_function_1(){
 
 //create players emty borads
-emty_player_1_board = create_game_board(board_size)
-emty_player_2_board = create_game_board(board_size)
+emty_player_1_board = create_board_rows(board_size)
+emty_player_2_board = create_board_rows(board_size)
 //fill boards with ships
 player_1_board = fill_board_with_ships(emty_player_1_board, board_size)
 player_2_board = fill_board_with_ships(emty_player_2_board, board_size)
