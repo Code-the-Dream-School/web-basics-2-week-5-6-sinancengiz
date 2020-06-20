@@ -14,11 +14,11 @@
 
 board_size  = 4
 //this is a function to create empty game board
-function create_board_rows(number){
+function create_board_rows(size){
   var game_board_list= [];
-  for (var i = 0; i < number; i++){
+  for (var i = 0; i < size; i++){
     dummy_list = []
-     for (var j = 0; j < number; j++){
+     for (var j = 0; j < size; j++){
        dummy_list.push(0)
      }
      game_board_list.push(dummy_list)
@@ -27,11 +27,11 @@ function create_board_rows(number){
 }
 
 //a function to get total ship amount on game_board
-function get_total_ship_amount(board,number){
+function get_total_ship_amount(board,size){
   total_ships = 0
-  for (var i = 0; i < number; i++){
+  for (var i = 0; i < size; i++){
     
-      for (var j = 0; j < number; j++){
+      for (var j = 0; j < size; j++){
       total_ships += board[i][j]
       }
       
@@ -40,13 +40,13 @@ function get_total_ship_amount(board,number){
 }
 
 // Generate  Ships with random values and add into a gameboard
-function fill_board_with_ships(game_board, number){
+function fill_board_with_ships(game_board, size){
   dummy_list = game_board
 do
 {
-  dummy_list[Math.floor(Math.random() * number)][Math.floor(Math.random() * number)] = 1
+  dummy_list[Math.floor(Math.random() * size)][Math.floor(Math.random() * size)] = 1
   
-}while( get_total_ship_amount(dummy_list,board_size) < number);
+}while( get_total_ship_amount(dummy_list,board_size) < size);
 return dummy_list
 }
 
